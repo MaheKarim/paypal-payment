@@ -1,0 +1,16 @@
+{
+    "name": "mahekarim/paypal-payment",
+    "description": "A package to handle PayPal payments.",
+    "type": "library",
+    "require": {
+        "php": ">=7.4",
+        "guzzlehttp/guzzle": "^7.0" 
+    },
+    "autoload": {
+        "psr-4": {
+            "Mahekarim\\PaypalPayment\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
