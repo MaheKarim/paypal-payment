@@ -42,23 +42,25 @@ Add your PayPal API credentials to your .env file:
 
 env
 Copy code
+```
 PAYPAL_CLIENT_ID=your-client-id
 PAYPAL_SECRET_ID=your-secret-id
 PAYPAL_ACCOUNT_MODE=sandbox # Change to 'live' for production
+```
 Step 2: Publish the configuration (Optional for Laravel)
 If you're using Laravel, publish the config file:
 
-bash
-Copy code
+```
 php artisan vendor:publish --provider="MaheKarim\PaypalPayment\PayPalServiceProvider"
-This will create a configuration file config/paypal.php where you can specify your PayPal settings.
+```
+This will create a configuration file ``config/paypal.php`` where you can specify your PayPal settings.
 
 Usage
 Step 1: Create a Payment
 To create a payment, use the PayPalService class:
+```
+<?php
 
-php
-Copy code
 use MaheKarim\PaypalPayment\PayPalService;
 
 $paypalService = new PayPalService(env('PAYPAL_CLIENT_ID'), env('PAYPAL_SECRET_ID'), env('PAYPAL_ACCOUNT_MODE'));
@@ -71,11 +73,12 @@ if (isset($paymentResponse['approval_link'])) {
     // Handle error response
     return response()->json(['error' => $paymentResponse['message']]);
 }
+```
 Step 2: Execute a Payment
 After the user approves the payment, execute the payment using the executePayment method:
 
-php
-Copy code
+```
+
 $paymentId = $request->input('paymentId');
 $payerId = $request->input('PayerID');
 
@@ -88,11 +91,11 @@ if ($result && $result['state'] === 'approved') {
     // Handle failed payment
     return response()->json(['error' => $result['message']]);
 }
+```
 Example Usage in a Laravel Controller
 Here’s an example of how you might use the package in a Laravel controller:
 
-php
-Copy code
+```
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use MaheKarim\PaypalPayment\PayPalService;
@@ -132,28 +135,30 @@ class PaypalController extends Controller
         }
     }
 }
-Testing
-For local testing, make sure to set PAYPAL_ACCOUNT_MODE=sandbox in your .env file and use PayPal sandbox test credentials. You can create test accounts and API credentials on the PayPal Developer Portal.
 
-Changelog
+```
+## Testing
+
+For local testing, make sure to set ``PAYPAL_ACCOUNT_MODE=sandbox`` in your ``.env`` file and use PayPal sandbox test credentials. You can create test accounts and API credentials on the PayPal Developer Portal.
+
+### Changelog
 Please see the CHANGELOG for more information on what has changed recently.
 
-Contributing
+### Contributing
 Feel free to open an issue or submit a pull request for improvements and bug fixes.
 
-Fork the repository.
-Create a new branch (git checkout -b feature/YourFeatureName).
-Commit your changes (git commit -am 'Add new feature').
-Push to the branch (git push origin feature/YourFeatureName).
-Create a new Pull Request.
-License
+### Fork the repository.
+* Create a new branch ``(git checkout -b feature/YourFeatureName)``
+* Commit your changes ``(git commit -am 'Add new feature')``
+* Push to the branch ``(git push origin feature/YourFeatureName)``
+* Create a new Pull Request.
+
+#### License
 This package is open-sourced software licensed under the MIT license.
 
-Credits
-Mahe Karim
-All Contributors
-vbnet
-Copy code
+## Credits
+* <a href="https://github.com/MaheKarim">Mahe Karim aka [mahekarim@gmail.com]</a>
+
 
 ### Notes:
 - Update any URLs, such as in `LICENSE` and `CHANGELOG`, to reflect their actual paths if they differ.
