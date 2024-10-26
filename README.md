@@ -20,12 +20,14 @@ Install the package via Composer:
 composer require mahekarim/paypal-payment
 ```
 
-#Configuration
+## Configuration
 Step 1: Set up environment variables
 Add your PayPal API credentials to your .env file:
-```PAYPAL_CLIENT_ID=your-client-id
+```
+PAYPAL_CLIENT_ID=your-client-id
 PAYPAL_SECRET_ID=your-secret-id
-PAYPAL_ACCOUNT_MODE=sandbox # Change to 'live' for production```
+PAYPAL_ACCOUNT_MODE=sandbox
+```
 
 #Step 2: Publish the configuration (Optional for Laravel)
 If you're using Laravel, publish the config file:
